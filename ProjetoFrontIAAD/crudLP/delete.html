@@ -14,8 +14,25 @@
     <h1>Delete o dado com o nome da Linguagem de Programação &#x1F4BB</h1>
     <br>
     <div>
-        <input type="text" value="nome_linguagem">
-        <button type="submit">Deletar</button>
+        <input type="text" value="nome_linguagem" id="input_id_lp">
+        <button type="submit" onclick="deleteLinguagem()">Deletar</button>
+        <span id="response"></span>
     </div>
+    <script>
+        function deleteLinguagem(){
+          const linguagem = document.querySelector('#input_id_lp');
+          const id_linguagem = parseInt(linguagem.value);
+          console.log(typeof(id_linguagem));
+          const URL = `http://localhost:3000/linguagem_programacao/delete/${id_linguagem}`;
+          console.log(URL);
+          const resposta = document.querySelector('#response');
+          resposta.innerHTML = ' ';
+          fetch(URL, {method:'DELETE'})
+              .then(response => response.json())
+              .then(data=>{
+                  resposta.innerHTML=data.message;
+              })
+      }
+  </script>
 </body>
 </html>

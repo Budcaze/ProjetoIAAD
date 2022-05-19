@@ -7,6 +7,63 @@
     <title>Todos os dados</title>
 </head>
 <body>
-    <p>Meu pau</p>
+    <h1> Programadores Cadastrados: </h1>
+    <div>
+        <table id="table_programadorAll">
+            <tr>
+                <td>
+                    Identificador
+                </td>
+                <td>
+                    Nome
+                </td>
+                <td>
+                    Gênero
+                </td>
+                <td>
+                    Data de Nascimento
+                </td>
+                <td>
+                    Email
+                </td>
+                <td>
+                    Startup
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function request(){
+                const URL = 'http://localhost:3000/programador';
+
+                fetch(URL)
+                    .then(response => response.json())
+                    .then( data=>{
+                        console.log(data)
+                        const tabela = document.querySelector('#table_programadorAll');
+
+                        data.map((item) =>{
+                            const linha = document.createElement('tr')
+                            const td1 = document.createElement('td');
+                            const td2 = document.createElement('td');
+                            const td3 = document.createElement('td');
+                            td1.setAttribute('id_linguagem', item.id_linguagem);
+                            td1.innerHTML = item.id_linguagem;
+                            td2.setAttribute('nome_linguagem', item.nome_linguagem);
+                            td2.innerHTML = item.nome_linguagem;
+                            td3.setAttribute('ano_lancamento', item.ano_lancamento);
+                            td3.innerHTML = item.ano_lancamento;
+
+                            linha.appendChild(td1);
+                            linha.appendChild(td2);
+                            linha.appendChild(td3)
+                            tabela.appendChild(linha);
+            });
+                    })
+
+            }
+
+            request();
+    </script>
 </body>
 </html>
