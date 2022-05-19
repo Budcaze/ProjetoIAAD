@@ -11,11 +11,28 @@
     <a href="../bancostartup.html">Voltar Pag tabelas</a>
 </header>
 <body>
-    <h1>Delete o dado com o nome da Startup</h1>
+    <h1>Delete o dado com o id_startup da Startup</h1>
     <br>
     <div>
-        <input type="text" value="nome_startup">
-        <button type="submit">Deletar</button>
+        <input type="text" value="id_startup" id="input_delete_startup">
+        <button type="submit" id="btn_delete_startup" onclick="deleteStartup()">Deletar</button>
+        <span id="reponse"></span>
     </div>
+    <script>
+          function deleteStartup(){
+            const startup = document.querySelector('#input_delete_startup');
+            const startup_id = parseInt(startup.value)
+            console.log(typeof(startup_id))
+            const URL = `http://localhost:3000/startup/delete/${startup_id}`;
+            console.log(URL)
+            const resposta = document.querySelector('#reponse');
+            resposta.innerHTML = '';
+            fetch(URL, {method:'DELETE'})
+                .then(response => response.json())
+                .then(data=>{
+                    resposta.innerHTML=data.message;
+                })
+        }
+    </script>
 </body>
 </html>
