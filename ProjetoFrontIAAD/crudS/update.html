@@ -15,13 +15,47 @@
     <br>
     <div>
         <label for="id_startup">id_startup:</label>
-        <input type="number" value="id_startup">
-        <select>
+        <input type="number" value="id_startup" id="id_startup">
+        <select id="dado">
             <option value="nome_startup">nome_startup</option>
             <option value="cidade_sede">cidade_sede</option>
         </select> =
-        <input type="text" value="novo_dado">
-        <button type="submit">Atualizar</button>
+        <input type="text" value="novo_dado" id="new_data">
+        <button type="submit" onclick="updateStartup()">Atualizar</button>
     </div>
+    <script>
+        function updateStartup(){
+            const id_S = document.querySelector('#id_startup').value;
+            const id = parseInt(id_S);
+            console.log(typeof id)
+            const URL = `http://localhost/startup/update/${id}`;
+            const select = document.querySelector('#dado').value;
+            let update;
+            let field;
+            if(select === 'nome_startup'){
+                field = select;
+                update = document.querySelector("#new_data").value;
+            }else if (select == 'cidade_sede'){
+                field = select;
+                update = update = document.querySelector("#new_data").value;
+            }
+
+            const teste = `${URL}?id_startup=${id}&${field}=${update}`
+            console.log(URL); 
+
+            fetch(URL,{method: 'PUT',
+             body: JSON.stringify({
+                 id_startup: id,
+                 field: update
+             }),
+             headers:{"Accept": "application/json",
+                      "Allow": 'PUT'  
+                    }})
+                .then(response => response.json())
+                .then(response => console.log(response))
+                .catch(err => console.log(err))
+
+        }
+    </script>
 </body>
 </html>

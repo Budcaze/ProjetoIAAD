@@ -14,8 +14,25 @@
     <h1>Delete o dado com o nome do Programador &#x1F4BB</h1>
     <br>
     <div>
-        <input type="text" value="nome_programador">
-        <button type="submit">Deletar</button>
+        <input type="text" value="nome_programador" id="delete_programador">
+        <button type="submit" onclick="deleteProgramador()">Deletar</button>
+        <span id="response"></span>
     </div>
+    <script>
+         function deleteProgramador(){
+            const programador = document.querySelector('#delete_programador');
+            const id_programador = parseInt(programador.value)
+            console.log(typeof(startup_id))
+            const URL = `http://localhost:3000/programador/delete/${id_programador}`;
+            console.log(URL)
+            const resposta = document.querySelector('#response');
+            resposta.innerHTML = '';
+            fetch(URL, {method:'DELETE'})
+                .then(response => response.json())
+                .then(data=>{
+                    resposta.innerHTML=data.message;
+                })
+        }
+    </script>
 </body>
 </html>

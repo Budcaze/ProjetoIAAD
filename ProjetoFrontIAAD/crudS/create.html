@@ -33,9 +33,8 @@
             console.log(data);
             
             const URL = 'http://localhost:3000/add/startup';
-            fetch(URL, {method: 'POST',
-             headers:{"Accept": "application/json"},
-             body: JSON.stringify(data)})
+            fetch(`${URL}?id_startup=${id}&nome_startup=${nome}&cidade_sede=${cidade}`, {method: 'POST',
+             headers:{"Accept": "application/json"}})
                 .then(response => response.json())
                 .then(response => console.log(response))
                 .catch(err=>{
