@@ -30,7 +30,12 @@
             fetch(URL)
                 .then(response => response.json())
                 .then(data=>{
-                    console.log(data);
+                    const options = {
+                        dateStyle: 'short'
+                    }
+                    let dataTratada = new Date(data.data_nascimento);
+                    let date = dataTratada.getDate() + ' ' + dataTratada.toLocaleString('pt-br', { month: "short" }) + ' ' + dataTratada.getFullYear()
+                    console.log(dataTratada);
                     const tabela = document.querySelector('#table_programadorOne');
                     tabela.innerHTML = '';
                     const linhaInicial = document.createElement('tr');
@@ -67,7 +72,7 @@
                     td1.innerHTML = data.id_programador;
                     td2.innerHTML = data.nome_programador;
                     td3.innerHTML = data.genero;
-                    td4.innerHTML = data.data_nascimento;
+                    td4.innerHTML = date;
                     td5.innerHTML = data.email;
                     td6.innerHTML = data.id_startup;
 

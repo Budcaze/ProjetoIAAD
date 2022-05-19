@@ -15,17 +15,19 @@
     <br>
     <div>
         <label for="id_programador">id_programador:</label>
-        <input type="number"  id="id_programdor">
+        <input type="number"  id="id_programador">
         <label for="id_linguagem">id_linguagem:</label>
         <input type="number"  id="id_linguagem">
-        <button type="submit" onclick="lpPost()">Inserir Dados</button>
+        <button type="submit" onclick="plPost()">Inserir Dados</button>
     </div>
     <script>
-         function lpPost(){
+         function plPost(){
             const id_pS = document.querySelector('#id_programador');
             const id_lS = document.querySelector('#id_linguagem');
             const id_p = parseInt(id_pS.value);
             const id_l = parseInt(id_lS.value);
+            console.log(id_l)
+            
 
             const URL = 'http://localhost:3000/add/programador_linguagem';
             fetch(`${URL}?id_programador=${id_p}&id_linguagem=${id_l}`, {method: 'POST',
