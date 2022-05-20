@@ -28,20 +28,22 @@
             const id_S = document.querySelector('#id_startup').value;
             const id = parseInt(id_S);
             console.log(typeof id)
-            const URL = `http://localhost/startup/update/${id}`;
+            const URLBASE = `http://localhost:3000/startup/update/${id}`;
             const select = document.querySelector('#dado').value;
             let update;
+            let URL;
             let field;
             if(select === 'nome_startup'){
                 field = select;
                 update = document.querySelector("#new_data").value;
-            }else if (select == 'cidade_sede'){
+                URL = `${URLBASE}?nome_startup=${update}`;
+            }else if (select === 'cidade_sede'){
                 field = select;
                 update = update = document.querySelector("#new_data").value;
+                URL = `${URLBASE}?cidade_sede=${update}`;
+
             }
 
-            const teste = `${URL}?id_startup=${id}&${field}=${update}`
-            console.log(URL); 
 
             fetch(URL,{method: 'PUT',
              body: JSON.stringify({
