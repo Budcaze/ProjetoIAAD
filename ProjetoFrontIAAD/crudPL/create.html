@@ -19,6 +19,8 @@
         <label for="id_linguagem">id_linguagem:</label>
         <input type="number"  id="id_linguagem">
         <button type="submit" onclick="plPost()">Inserir Dados</button>
+        <span id="response"></span>
+
     </div>
     <script>
          function plPost(){
@@ -26,16 +28,17 @@
             const id_lS = document.querySelector('#id_linguagem');
             const id_p = parseInt(id_pS.value);
             const id_l = parseInt(id_lS.value);
-            console.log(id_l)
-            
 
             const URL = 'http://localhost:3000/add/programador_linguagem';
             fetch(`${URL}?id_programador=${id_p}&id_linguagem=${id_l}`, {method: 'POST',
              headers:{"Accept": "application/json"}})
                 .then(response => response.json())
-                .then(response => console.log(response))
+                .then(data =>{
+                    const erro = document.querySelector('#response')
+                    erro.innerHTML = data.message
+                })
                 .catch(err=>{
-                    console.log(err);
+                    consolo
                 })
         
         }

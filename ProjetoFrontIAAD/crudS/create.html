@@ -18,6 +18,7 @@
         <input type="text" value="nome" id="input_nome_startup">
         <input type="text" value="cidade_sede" id="input_cidade_sede">
         <button onclick="startupPost()" type="submit">Inserir Dados</button>
+        <span id="response"></span>
     </div>
     <script>
         function startupPost(){
@@ -28,7 +29,7 @@
             const data = {
                 id_startup: id,
                 nome_startup: nome,
-                cidade_sede: cidade
+                cidade_sede: cidade,
             }
             console.log(data);
             

@@ -23,6 +23,7 @@
         <label for="id_startup">id Startup:</label>
         <input type="text" id="id_startup">
         <button type="submit" onclick='programadorPost()' >Inserir Dados</button>
+        <span id="response"></span>
     </div>
 
     <script>
@@ -42,7 +43,10 @@
             fetch(`${URL}?id_programador=${id_p}&nome_programador=${nome}&genero=${genero}&data_nascimento=${nascimento}&email=${email}&id_startup=${id_s}`,
              {method: 'POST', headers:{"Accept": "application/json"}})
                 .then(response => response.json())
-                .then(response => console.log(response))
+                .then(data => {
+                    const aviso = document.querySelector('#response');
+                    aviso.innerHTML = data.message;
+                })
                 .catch(err=>{
                     console.log(err);
                 })
